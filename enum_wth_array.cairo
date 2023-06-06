@@ -13,30 +13,23 @@ enum Data {
 fn main() {
     let mut messages: Array<Data> = ArrayTrait::new();
     messages.append(Data::Integer(100_u128));
-    // messages.append(Data::Felt('hello world'));
-    // messages.append(Data::Tuple((10_u32, 30_u32)));
+    messages.append(Data::Felt('hello world'));
+    messages.append(Data::Tuple((10_u32, 30_u32)));
 
-    let span = messages.span();
-    // span
+   messages.print()
 
-    // print( messages);
-    messages.print();
-//    let sat = sa(messages);
-//    print(sat)
 }
+// PrintTrait<Array<felt252>>
 
-// fn sa(arr: Array<Data>){
-//     let arr1 = arr.span();
-//     // print(arr1);
-// }
-
-impl MessagePrintImpl of PrintTrait::<Data> {
-    fn print(self: Data) {
-        match self {
-            Data::Integer(_) => 'first'.print(),
-            Data::Felt(_) => ('Echo').print(),
-            Data::Tuple(_) => ('Move').print(),
+impl MessagePrintImpl of PrintTrait<Array<Data>> {
+    fn print( self: Array<Data>) {
+        // match self {
+        //    messages::Data::Integer(e) => e.print(),
+        //     // Data::Felt(r) => r.print(),
+        //     // Data::Tuple((u32, u32)) => v.print(),
             
-        }
+        // }
+         print(self);
+        // Into::<_, Array<Data>>::into(self).print();
     }
 }
